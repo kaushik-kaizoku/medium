@@ -38,6 +38,14 @@ userRouter.post('/signup', async (c) => {
     }	
   })
   
+userRouter.use('/signin', async (c) => {
+    const body = await c.req.json()
+
+    if(body.email == "admin@admin" && body.password == "admin@123"){
+        return c.json({token: "admin"}) 
+    }
+})
+
 userRouter.post('/signin',async (c) => {
    const prisma = new PrismaClient({
      datasourceUrl: c.env?.DATABASE_URL,
