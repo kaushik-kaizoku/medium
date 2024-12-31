@@ -1,9 +1,9 @@
 import { Appbar } from "../components/Appbar"
 import { BlogCard } from "../components/BlogCard"
 import { BlogSkeleton } from "../components/Skeleton";
-import { UserCard } from "../components/UserCard";
 import { useAdminBlogs, useAdminUsers } from "../hooks";
 import { useState } from "react";
+import AdminUserTable from "../components/UsersComponent";
 
 enum Mode {
     Blogs,
@@ -34,12 +34,7 @@ export const Admin = () => {
                   <BlogSkeleton />
               </div>
             </div> :  <div className="flex justify-center">
-            { mode === Mode.Users ? <div>{users.map(user => <UserCard
-                    key={user.id}
-                    name={user.name}
-                    email={user.email}
-                />
-            )}</div> :
+            { mode === Mode.Users ? <AdminUserTable userlist={users} /> :
              <div> 
              {blogs.map(blog => <BlogCard
                  id={blog.id}
