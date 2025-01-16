@@ -41,7 +41,7 @@ const AdminUserTable = ({userlist}: {userlist: User[]}) => {
       
 
       <div className="overflow-x-auto bg-white rounded-lg shadow">
-        <table className="min-w-full divide-y divide-gray-200">
+        <table className="w-full divide-y divide-gray-200">
           <thead className="bg-zinc-300">
           <tr>
               <th className="w-1/7 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">No</th>
@@ -54,11 +54,11 @@ const AdminUserTable = ({userlist}: {userlist: User[]}) => {
             {users.map((user) => (
               <tr key={user.id} className="hover:bg-zinc-200">
                 <td className="w-1/7 px-6 py-4 text-sm text-gray-900">
-                <div className="h-8 flex items-center"></div>
+                <div className=" flex items-center"></div>
                   {user.id}
                 </td>
                 <td className="w-3/7 px-6 py-4 text-sm text-gray-900">
-                <div className="h-8 flex items-center">
+                <div className=" flex items-center">
                 {editingUser === user.id ? (
                     <input
                       type="text"
@@ -72,7 +72,7 @@ const AdminUserTable = ({userlist}: {userlist: User[]}) => {
                 </div>                
                 </td>
                 <td className="w-3/7 px-6 py-4  text-sm text-gray-900">
-                <div className="h-8 flex items-center">
+                <div className=" flex items-center">
                 {editingUser === user.id ? (
                     <input
                       type="email"
@@ -102,16 +102,16 @@ const AdminUserTable = ({userlist}: {userlist: User[]}) => {
                       </button>
                     </div>
                   ) : (
-                    <div className="flex gap-2">
+                    <div className="flex gap-4">
                       <button
                         onClick={() => handleEdit(user)}
-                        className="text-blue-600 hover:text-blue-800"
+                        className="text-zinc-600 hover:text-blue-800"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(user.id)}
-                        className="bg-zinc-400 hover:text-red-500"
+                        className="text-zinc-400 hover:text-red-500"
                       >
                         Delete
                       </button>
