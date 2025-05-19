@@ -15,15 +15,18 @@ userRouter.post('/signup', async (c) => {
     const prisma = new PrismaClient({
       datasourceUrl: c.env?.DATABASE_URL,
     }).$extends(withAccelerate())
+
     const body = await c.req.json()
+
     const success = signupInput.safeParse(body)
+    
     if(!success){
       c.status(411)
       return c.json({
         msg:"wrong inputs"
       })
     }
-    try{
+    try{      
       const user = await prisma.user.create({
         data : {
           email: body.email,
@@ -31,6 +34,8 @@ userRouter.post('/signup', async (c) => {
           name: body.name
         }    
       })
+
+      console.log("user created");
       const token = await sign({id: user.id}, c.env.JWT_SECRET)
       return c.json({token})
     }catch(e){
@@ -38,14 +43,6 @@ userRouter.post('/signup', async (c) => {
     }	
   })
   
-userRouter.use('/signin', async (c) => {
-    const body = await c.req.json()
-
-    if(body.email == "admin@admin" && body.password == "admin@123"){
-        return c.json({token: "admin"}) 
-    }
-})
-
 userRouter.post('/signin',async (c) => {
    const prisma = new PrismaClient({
      datasourceUrl: c.env?.DATABASE_URL,

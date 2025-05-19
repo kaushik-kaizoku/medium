@@ -13,6 +13,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+}
+
 model User {
   id       Int   @id @default(autoincrement())
   email    String   @unique
@@ -26,6 +31,8 @@ model Post {
   title     String
   content   String
   published Boolean  @default(false)
+  status   PostStatus   @default(DRAFT)
   author    User     @relation(fields: [authorId], references: [id])
+  publishedAt DateTime? @default(now())
   authorId  Int
 }

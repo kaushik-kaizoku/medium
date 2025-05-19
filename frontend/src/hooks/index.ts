@@ -6,18 +6,12 @@ import { BACKEND_URL } from "../config";
 export interface Blog {
     "content": string;
     "title": string;
-    "id": number
+    "id": number;
+    "publishedAt": string;
     "author": {
         "name": string
     }
 }
-
-export interface User {
-    "email": string;
-    "name": string;
-    "id": number
-}
-
 
 export const useBlog = ({ id }: { id: string }) => {
     const [loading, setLoading] = useState(true);
@@ -62,48 +56,3 @@ export const useBlogs = () => {
         blogs
     }
 }
-
-export const useAdminBlogs = () => {
-    const [loading, setLoading] = useState(true);
-    const [blogs, setBlogs] = useState<Blog[]>([]);
-
-    useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/admin/blogs`, {
-            headers: {
-                Authorization: "admin"
-            }
-        })
-            .then(response => {
-                setBlogs(response.data.blogs);
-                setLoading(false);
-            })
-    }, [])
-
-    return {
-        loading,
-        blogs
-    }
-}
-
-export const useAdminUsers = () => {
-    const [loadingUsers, setLoadingUsers] = useState(true);
-    const [users, setUsers] = useState<User[]>([]);
-
-    useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/admin/users`, {
-            headers: {
-                Authorization: "admin"
-            }
-        })
-            .then(response => {
-                setUsers(response.data.users);
-                setLoadingUsers(false);
-            })
-    }, [])
-
-    return {
-        loadingUsers,
-        users
-    }
-}
-
