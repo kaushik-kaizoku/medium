@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Skeleton } from "@/components/ui/skeleton"
 
 
 interface BlogCardProps {
@@ -73,9 +74,9 @@ export const BlogCard = ({
 
 }
 
-export function Circle() {
-    return <div className="h-1 w-1 rounded-full bg-slate-500">
-
-    </div>
+BlogCard.Skeleton = function BlogCardSkeleton() {
+    return <Skeleton className="w-[450px] h-64 m-4" />
 }
+
+
 
