@@ -8,7 +8,7 @@
 7.jwt for authentication  
  
 
-#Setup Guide 
+# Setup Guide 
 
 ## Setting up the repository
 ### Clone the repository
